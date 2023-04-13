@@ -6,12 +6,12 @@ namespace Login
     public class LoginPage
     {
         Func<String> _getPassword;
-        IRepository _repository;
+        IRepository _r;
 
         public LoginPage(Func<String> getPassword, IRepository Repository)
         {
             _getPassword = getPassword;
-            _repository = Repository;
+            _r = Repository;
         }
 
         public bool SignIn(out String login)
@@ -47,7 +47,7 @@ namespace Login
             user.Login = login;
             user.Password = password;
 
-            if (_repository.Login(user))
+            if (_r.Login(user))
                 result = true;
 
             return result;

@@ -9,7 +9,7 @@ namespace Database
 {
     public interface IRepository
     {
-        public void AddUser(User User);
+        public void addUser(User User);
         public User? getUserByLogin(String Login);
         public Boolean Login(User User);
     }

@@ -53,12 +53,12 @@ namespace Registration
                 Console.Write("Confirm Password: ");
                 confirmPassword = _getPassword();
                 Console.WriteLine();
-            } while (!(password == confirmPassword & !String.IsNullOrEmpty(password)));
+            } while (!(password == confirmPassword & !String.IsNullOrEmpty(password) & !String.IsNullOrEmpty(confirmPassword)));
 
             User user = new User();
             user.Login = login;
             user.Password = password;
-            _repository.AddUser(user);
+            _repository.addUser(user);
 
 
 

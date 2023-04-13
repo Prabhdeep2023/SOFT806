@@ -14,11 +14,11 @@ namespace EntryPoint
         {
             Console.WriteLine("Welocome to 'SOFT806 Continuous Integration and Continuous Deployment' course");
 
-            Repository repository = new Repository(ConfigurationManager.ConnectionStrings["Test"].ConnectionString);
+            Repository repository = new Repository(@"Data Source=localhost\\SQLEXPRESS1;Initial Catalog=SOFT806;Integrated Security=True");
 
-            Boolean isNewUser = IsNewUser();
+            Boolean isnewuser = IsNewUser();
 
-            if (isNewUser)
+            if (isnewuser)
             {
                 R.RegistrationPage registrationPage = new R.RegistrationPage(Password.GetPassword, repository);
                 registrationPage.Register();

@@ -4,8 +4,10 @@
     {
         public void Open(String login)
         {
+            string message = login;
+            
             Console.Clear();
-            Console.WriteLine($"Welcome {login}!");
+            Console.WriteLine($"Welcome {message}!");
         }
     }
 }

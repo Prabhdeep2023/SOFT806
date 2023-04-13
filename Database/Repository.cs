@@ -12,7 +12,7 @@ namespace Database
             _connectionString = ConnectionString;
         }
 
-        public void AddUser(User user)
+        public void addUser(User user)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -24,15 +24,8 @@ namespace Database
                 command.Parameters.AddWithValue("@Login", user.Login);
                 command.Parameters.AddWithValue("@Password", user.Password);
 
-                try
-                {
-                    connection.Open();
-                    command.ExecuteNonQuery();
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
+                connection.Open();
+                command.ExecuteNonQuery();
             }
         }
 
