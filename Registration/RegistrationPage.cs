@@ -1,5 +1,4 @@
 ﻿using Database;
-using Domain;
 
 namespace Registration
 {
