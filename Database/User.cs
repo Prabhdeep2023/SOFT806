@@ -1,4 +1,4 @@
-﻿namespace Domain
+﻿namespace Database
 {
     public class User
     {
