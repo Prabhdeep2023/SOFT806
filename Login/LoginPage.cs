@@ -11,7 +11,7 @@ namespace Login
         public LoginPage(Func<String> getPassword, IRepository Repository)
         {
             _getPassword = getPassword;
-            _r = Repository;
+            _r = Repository; /* update the variable name with something meaningful */
         }
 
         public bool SignIn(out String login)
