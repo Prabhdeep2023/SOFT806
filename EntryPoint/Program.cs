@@ -41,7 +41,8 @@ namespace EntryPoint
             while (true)
             {
                 Console.WriteLine("Are you a new user? (Yes/No)");
-
+                
+                /* use camel casing for declaring variable names */
                 string? inputtext = Console.ReadLine();
 
                 if (inputtext is not null && inputtext.ToLower() == "yes")
