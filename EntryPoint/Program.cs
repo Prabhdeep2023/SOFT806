@@ -42,13 +42,13 @@ namespace EntryPoint
             {
                 Console.WriteLine("Are you a new user? (Yes/No)");
 
-                string? inputText = Console.ReadLine();
+                string? inputtext = Console.ReadLine();
 
-                if (inputText is not null && inputText.ToLower() == "yes")
+                if (inputtext is not null && inputtext.ToLower() == "yes")
                 {
                     return true;
                 }
-                else if (inputText is not null && inputText.ToLower() == "no")
+                else if (inputtext is not null && inputtext.ToLower() == "no")
                 {
                     return false;
                 }
