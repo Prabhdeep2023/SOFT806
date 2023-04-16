@@ -5,19 +5,19 @@ namespace Registration
     public class RegistrationPage
     {
         Func<String> _getPassword;
-        IRepository _repository;
+        IRepository _rep;
 
         public RegistrationPage(Func<String> getPassword, IRepository Repository)
         {
             _getPassword = getPassword;
-            _repository = Repository;
+            _rep = Repository;
         }
 
         public void Register()
         {
             String? login;
             String password = String.Empty;
-            String confirmPassword = String.Empty;
+            String confirmpassword = String.Empty;
 
             Console.WriteLine();
             Console.WriteLine("Registration");
@@ -33,7 +33,7 @@ namespace Registration
 
                 login = login.Trim();
 
-                User? existingUser = _repository.getUserByLogin(login);
+                User? existingUser = _rep.getUserByLogin(login);
                 if (existingUser is not null)
                 {
                     Console.WriteLine(@$"{login} is already taken!");
@@ -50,14 +50,14 @@ namespace Registration
                 Console.WriteLine();
 
                 Console.Write("Confirm Password: ");
-                confirmPassword = _getPassword();
+                confirmpassword = _getPassword();
                 Console.WriteLine();
-            } while (!(password == confirmPassword & !String.IsNullOrEmpty(password) & !String.IsNullOrEmpty(confirmPassword)));
+            } while (!(password == confirmpassword & !String.IsNullOrEmpty(password) & !String.IsNullOrEmpty(confirmpassword)));
 
             User user = new User();
             user.Login = login;
             user.Password = password;
-            _repository.addUser(user);
+            _rep.addUser(user);
 
 
 

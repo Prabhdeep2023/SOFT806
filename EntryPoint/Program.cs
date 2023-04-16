@@ -16,7 +16,7 @@ namespace EntryPoint
 
             Repository repository = new Repository(@"Data Source=localhost\\SQLEXPRESS1;Initial Catalog=SOFT806;Integrated Security=True");
 
-            Boolean isnewuser = IsNewUser();
+            Boolean isnewuser = isNewUser();
 
             if (isnewuser)
             {
@@ -36,19 +36,19 @@ namespace EntryPoint
             }
         }
 
-        private static Boolean IsNewUser()
+        private static Boolean isNewUser()
         {
             while (true)
             {
                 Console.WriteLine("Are you a new user? (Yes/No)");
                 
-                string? inputText1 = Console.ReadLine();
+                string? inputText = Console.ReadLine();
 
-                if (inputText1 is not null && inputText1.ToLower() == "yes")
+                if (inputText is not null && inputText.ToLower() == "yes")
                 {
                     return true;
                 }
-                else if (inputText1 is not null && inputText1.ToLower() == "no")
+                else if (inputText is not null && inputText.ToLower() == "no")
                 {
                     return false;
                 }
