@@ -8,8 +8,8 @@ namespace Database
 {
     public interface IRepository
     {
-        public void addUser(User User);
-        public User? getUserByLogin(String Login);
+        public void AddUser(User User);
+        public User? GetUserByLogin(String Login);
         public Boolean Login(User User);
     }
 }

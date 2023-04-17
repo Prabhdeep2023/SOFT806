@@ -8,16 +8,19 @@ namespace EntryPoint
 {
     public static class Password
     {
+        /// <summary>
+        /// The method prompts a user to enter a password while hiding the value on screen.
+        /// </summary>
         public static string GetPassword()
         {
             var password = string.Empty;
-            ConsoleKey consolekey;
+            ConsoleKey consoleKey;
             do
             {
                 var keyInfo = Console.ReadKey(intercept: true);
-                consolekey = keyInfo.Key;
+                consoleKey = keyInfo.Key;
 
-                if (consolekey == ConsoleKey.Backspace && password.Length > 0)
+                if (consoleKey == ConsoleKey.Backspace && password.Length > 0)
                 {
                     Console.Write("\b \b");
                     password = password[0..^1];
@@ -27,7 +30,7 @@ namespace EntryPoint
                     Console.Write("*");
                     password += keyInfo.KeyChar;
                 }
-            } while (consolekey != ConsoleKey.Enter);
+            } while (consoleKey != ConsoleKey.Enter);
 
             return password;
         }

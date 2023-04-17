@@ -2,22 +2,28 @@
 
 namespace Registration
 {
-    public class registrationPage
+    public class RegistrationPage
     {
         Func<String> _getPassword;
-        IRepository _rep;
+        IRepository _repository;
 
-        public registrationPage(Func<String> getPassword, IRepository Repository)
+        /// <summary>
+        /// It is a constructor for this class.
+        /// </summary>
+        public RegistrationPage(Func<String> getPassword, IRepository Repository)
         {
             _getPassword = getPassword;
-            _rep = Repository;
+            _repository = Repository;
         }
 
+        /// <summary>
+        /// The method prompts a new user to register.
+        /// </summary>
         public void Register()
         {
             String? login;
             String password = String.Empty;
-            String confirmpassword = String.Empty;
+            String confirmPassword = String.Empty;
 
             Console.WriteLine();
             Console.WriteLine("Registration");
@@ -33,7 +39,7 @@ namespace Registration
 
                 login = login.Trim();
 
-                User? existingUser = _rep.getUserByLogin(login);
+                User? existingUser = _repository.GetUserByLogin(login);
                 if (existingUser is not null)
                 {
                     Console.WriteLine(@$"{login} is already taken!");
@@ -50,14 +56,14 @@ namespace Registration
                 Console.WriteLine();
 
                 Console.Write("Confirm Password: ");
-                confirmpassword = _getPassword();
+                confirmPassword = _getPassword();
                 Console.WriteLine();
-            } while (!(password == confirmpassword & !String.IsNullOrEmpty(password) & !String.IsNullOrEmpty(confirmpassword)));
+            } while (!(password == confirmPassword & !String.IsNullOrEmpty(password)));
 
             User user = new User();
             user.Login = login;
             user.Password = password;
-            _rep.addUser(user);
+            _repository.AddUser(user);
 
 
 

@@ -2,12 +2,13 @@
 {
     public class MainPage
     {
+        /// <summary>
+        /// The method open the main page.
+        /// </summary>
         public void Open(String login)
         {
-            string message = login;
-            
             Console.Clear();
-            Console.WriteLine($"Welcome {message}!");
+            Console.WriteLine($"Welcome {login}!");
         }
     }
 }

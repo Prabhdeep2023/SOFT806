@@ -4,16 +4,22 @@ namespace Database
 {
     public class Repository : IRepository
     {
-        String _conStr = string.Empty;
+        String _connectionString = string.Empty;
 
+        /// <summary>
+        /// This is a constructor for this class.
+        /// </summary>
         public Repository(String ConnectionString)
         {
-            _conStr = ConnectionString;
+            _connectionString = ConnectionString;
         }
 
-        public void addUser(User user)
+        /// <summary>
+        /// It adds user to the database.
+        /// </summary>
+        public void AddUser(User user)
         {
-            using (SqlConnection connection = new SqlConnection(_conStr))
+            using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 String queryString =
                     @"INSERT INTO SOFT806.dbo.Users (ID, Login, Password)
@@ -23,16 +29,26 @@ namespace Database
                 command.Parameters.AddWithValue("@Login", user.Login);
                 command.Parameters.AddWithValue("@Password", user.Password);
 
-                connection.Open();
-                command.ExecuteNonQuery();
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
             }
         }
 
+        /// <summary>
+        /// Returns the result of user's login, whether it was successfult or not.
+        /// </summary>
         public bool Login(User user)
         {
             Boolean result = false;
 
-            using (SqlConnection connection = new SqlConnection(_conStr))
+            using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 String queryString =
                     @"SELECT TOP 1 
@@ -66,11 +82,14 @@ namespace Database
             return result;
         }
 
-        public User? getUserByLogin(string Login)
+        /// <summary>
+        /// Returns user by login.
+        /// </summary>
+        public User? GetUserByLogin(string Login)
         {
             User? user = null;
 
-            using (SqlConnection connection = new SqlConnection(_conStr))
+            using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 String queryString =
                     @"SELECT TOP 1 
@@ -82,13 +101,13 @@ namespace Database
                     WHERE 
 	                    Users.Login = @Login;";
 
-                SqlCommand com = new SqlCommand(queryString, connection);
-                com.Parameters.AddWithValue("@Login", Login);
+                SqlCommand sqlCommand = new SqlCommand(queryString, connection);
+                sqlCommand.Parameters.AddWithValue("@Login", Login);
 
                 try
                 {
                     connection.Open();
-                    SqlDataReader reader = com.ExecuteReader();
+                    SqlDataReader reader = sqlCommand.ExecuteReader();
                     while (reader.Read())
                     {
                         user = new User();

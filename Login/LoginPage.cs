@@ -4,15 +4,21 @@ namespace Login
 {
     public class LoginPage
     {
-        Func<String> _getpassword;
-        IRepository _r;
+        Func<String> _getPassword;
+        IRepository _repository;
 
+        /// <summary>
+        /// It is a contructor for this class.
+        /// </summary>
         public LoginPage(Func<String> getPassword, IRepository Repository)
         {
-            _getpassword = getPassword;
-            _r = Repository;
+            _getPassword = getPassword;
+            _repository = Repository;
         }
 
+        /// <summary>
+        /// The method prompts a user to sign in.
+        /// </summary>
         public bool SignIn(out String login)
         {
             Boolean result = false;
@@ -37,7 +43,7 @@ namespace Login
             do
             {
                 Console.Write("Password: ");
-                password = _getpassword();
+                password = _getPassword();
                 Console.WriteLine();
 
             } while (String.IsNullOrEmpty(password));
@@ -46,7 +52,7 @@ namespace Login
             user.Login = login;
             user.Password = password;
 
-            if (_r.Login(user))
+            if (_repository.Login(user))
                 result = true;
 
             return result;

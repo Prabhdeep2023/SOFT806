@@ -10,17 +10,20 @@ namespace EntryPoint
 {
     internal class Program
     {
+        /// <summary>
+        /// This method is the entry point for the application to start operation.
+        /// </summary>
         static void Main(string[] args)
         {
             Console.WriteLine("Welocome to 'SOFT806 Continuous Integration and Continuous Deployment' course");
 
-            Repository repository = new Repository(@"Data Source=localhost\\SQLEXPRESS1;Initial Catalog=SOFT806;Integrated Security=True");
+            Repository repository = new Repository(ConfigurationManager.ConnectionStrings["Test"].ConnectionString);
 
-            Boolean isnewuser = isNewUser();
+            Boolean isNewUser = IsNewUser();
 
-            if (isnewuser)
+            if (isNewUser)
             {
-                R.registrationPage registrationPage = new R.registrationPage(Password.GetPassword, repository);
+                R.RegistrationPage registrationPage = new R.RegistrationPage(Password.GetPassword, repository);
                 registrationPage.Register();
             }
             else
@@ -36,7 +39,10 @@ namespace EntryPoint
             }
         }
 
-        private static Boolean isNewUser()
+        /// <summary>
+        /// The method returns the result of answering the question "Are you a new user?".
+        /// </summary>
+        private static Boolean IsNewUser()
         {
             while (true)
             {
@@ -44,11 +50,11 @@ namespace EntryPoint
                 
                 string? inputText = Console.ReadLine();
 
-                if (inputText is not null && inputText.ToLower() == "yes")
+                if (inputText is not null && inputText.ToLower().Trim() == "yes")
                 {
                     return true;
                 }
-                else if (inputText is not null && inputText.ToLower() == "no")
+                else if (inputText is not null && inputText.ToLower().Trim() == "no")
                 {
                     return false;
                 }
