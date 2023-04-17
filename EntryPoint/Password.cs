@@ -11,13 +11,13 @@ namespace EntryPoint
         public static string GetPassword()
         {
             var password = string.Empty;
-            ConsoleKey key;
+            ConsoleKey consolekey;
             do
             {
                 var keyInfo = Console.ReadKey(intercept: true);
-                key = keyInfo.Key;
+                consolekey = keyInfo.Key;
 
-                if (key == ConsoleKey.Backspace && password.Length > 0)
+                if (consolekey == ConsoleKey.Backspace && password.Length > 0)
                 {
                     Console.Write("\b \b");
                     password = password[0..^1];
@@ -27,7 +27,7 @@ namespace EntryPoint
                     Console.Write("*");
                     password += keyInfo.KeyChar;
                 }
-            } while (key != ConsoleKey.Enter);
+            } while (consolekey != ConsoleKey.Enter);
 
             return password;
         }

@@ -2,12 +2,12 @@
 
 namespace Registration
 {
-    public class RegistrationPage
+    public class registrationPage
     {
         Func<String> _getPassword;
         IRepository _rep;
 
-        public RegistrationPage(Func<String> getPassword, IRepository Repository)
+        public registrationPage(Func<String> getPassword, IRepository Repository)
         {
             _getPassword = getPassword;
             _rep = Repository;

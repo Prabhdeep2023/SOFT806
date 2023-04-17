@@ -4,16 +4,16 @@ namespace Database
 {
     public class Repository : IRepository
     {
-        String _connectionString = string.Empty;
+        String _conStr = string.Empty;
 
         public Repository(String ConnectionString)
         {
-            _connectionString = ConnectionString;
+            _conStr = ConnectionString;
         }
 
         public void addUser(User user)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SqlConnection connection = new SqlConnection(_conStr))
             {
                 String queryString =
                     @"INSERT INTO SOFT806.dbo.Users (ID, Login, Password)
@@ -32,7 +32,7 @@ namespace Database
         {
             Boolean result = false;
 
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SqlConnection connection = new SqlConnection(_conStr))
             {
                 String queryString =
                     @"SELECT TOP 1 
@@ -70,7 +70,7 @@ namespace Database
         {
             User? user = null;
 
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SqlConnection connection = new SqlConnection(_conStr))
             {
                 String queryString =
                     @"SELECT TOP 1 
@@ -82,13 +82,13 @@ namespace Database
                     WHERE 
 	                    Users.Login = @Login;";
 
-                SqlCommand command = new SqlCommand(queryString, connection);
-                command.Parameters.AddWithValue("@Login", Login);
+                SqlCommand com = new SqlCommand(queryString, connection);
+                com.Parameters.AddWithValue("@Login", Login);
 
                 try
                 {
                     connection.Open();
-                    SqlDataReader reader = command.ExecuteReader();
+                    SqlDataReader reader = com.ExecuteReader();
                     while (reader.Read())
                     {
                         user = new User();

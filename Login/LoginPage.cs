@@ -4,12 +4,12 @@ namespace Login
 {
     public class LoginPage
     {
-        Func<String> _getPassword;
+        Func<String> _getpassword;
         IRepository _r;
 
         public LoginPage(Func<String> getPassword, IRepository Repository)
         {
-            _getPassword = getPassword;
+            _getpassword = getPassword;
             _r = Repository;
         }
 
@@ -37,7 +37,7 @@ namespace Login
             do
             {
                 Console.Write("Password: ");
-                password = _getPassword();
+                password = _getpassword();
                 Console.WriteLine();
 
             } while (String.IsNullOrEmpty(password));

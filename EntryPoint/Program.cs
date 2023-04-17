@@ -20,7 +20,7 @@ namespace EntryPoint
 
             if (isnewuser)
             {
-                R.RegistrationPage registrationPage = new R.RegistrationPage(Password.GetPassword, repository);
+                R.registrationPage registrationPage = new R.registrationPage(Password.GetPassword, repository);
                 registrationPage.Register();
             }
             else
